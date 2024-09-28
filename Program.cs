@@ -18,6 +18,9 @@ namespace apirest
             var builder = WebApplication.CreateBuilder(args);
             var services = builder.Services;
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
+
             // CONFIGURACAO DO BANCO DE DADOS
             services.AddDbContext<ApiDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
