@@ -37,7 +37,8 @@ namespace apirest.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public override async Task<ActionResult> Create([FromBody] Usuario entity)
-        {            
+        {
+            entity.DataNascimento = entity.DataNascimento.Value.ToUniversalTime();
             entity.Senha = BC.HashPassword(entity.Senha);
             return await base.Create(entity);
         }
@@ -47,6 +48,7 @@ namespace apirest.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public override async Task<ActionResult> Update(int id, [FromBody] Usuario entity)
         {
+            entity.DataNascimento = entity.DataNascimento.Value.ToUniversalTime();
             entity.Senha = BC.HashPassword(entity.Senha);
             return await base.Update(id, entity);
         }

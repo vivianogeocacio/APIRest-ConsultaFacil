@@ -9,13 +9,9 @@ namespace apirest.Controllers
 {
     public class MedicosController : BaseController<Medico, IMedicoService>
     {
-        private readonly IMapper _mapper;
-        private readonly IMedicoService _userService;
-
-        public MedicosController(IMedicoService service, IMapper mapper) : base(service)
+        public MedicosController(IMedicoService service) : base(service)
         {
-            _mapper = mapper;
-            _userService = service;
+            
         }
 
         [Authorize(Roles = "Administrador, Medico")]
@@ -28,7 +24,7 @@ namespace apirest.Controllers
             return test;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrador, Medico")]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public override async Task<ActionResult> GetById(int id)
         {
@@ -43,7 +39,7 @@ namespace apirest.Controllers
             return await base.Create(entity);
         }
 
-        [Authorize(Roles = "Administrador, Medico, Paciente")]
+        [Authorize(Roles = "Administrador, Medico")]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public override async Task<ActionResult> Update(int id, [FromBody] Medico entity)

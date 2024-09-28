@@ -4,7 +4,8 @@ using apirest.Repositories;
 
 namespace apirest.Services
 {
-    public interface IConsultaService : IService<Consulta> {
+    public interface IConsultaService : IService<Consulta> 
+    {
        
     }
 

@@ -21,17 +21,25 @@ namespace apirest.Models
         public Estado Tipo { get; set; }
 
 
+        public string TipoDescricao
+        {
+
+            get { return Tipo.ToString(); }
+
+        }
+
         //Foreign Key para relacionamento entre as tabelas Consultas e Usuários de forma 1:N "navegação virtual"
         public int? UsuarioId { get; set; }
 
         [JsonIgnore]
-        public  Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; }
 
         //Foreign Key para relacionamento entre as tabelas Consultas e Médicos de forma 1:N "navegação virtual"
         public int? MedicoId { get; set; }
 
         [JsonIgnore]
         public Medico Medico { get; set; }
+
 
     }
     public enum Estado

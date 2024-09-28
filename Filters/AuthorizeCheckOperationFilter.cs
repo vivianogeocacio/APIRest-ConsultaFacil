@@ -12,7 +12,7 @@ namespace apirest.Filters
         {
             // Verifica se o endpoint tem o atributo [Authorize]
             var hasAuthorize = context.MethodInfo.DeclaringType.GetCustomAttributes(true).OfType<AuthorizeAttribute>().Any()
-                                || context.MethodInfo.GetCustomAttributes(true).OfType<AuthorizeAttribute>().Any();
+                            || context.MethodInfo.GetCustomAttributes(true).OfType<AuthorizeAttribute>().Any();
 
             if (hasAuthorize)
             {

@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace apirest.Models
 {
     [Table("Usuarios")]
-    public class Usuario: BaseEntity
+    public class Usuario : BaseEntity
     {
         [Required(ErrorMessage = "O nome é obrigatório.")]
         [MaxLength(100, ErrorMessage = "O nome não pode exceder 100 caracteres.")]
@@ -36,12 +36,18 @@ namespace apirest.Models
         [Required(ErrorMessage = "O perfil de usuário é obrigatório.")]
         public UsuarioPerfil Perfil { get; set; }
 
-        public string PerfilDescricao
+        public string SexoDescricao
         {
-             get { return Perfil.ToString(); }
+
+            get { return Sexo.ToString(); }
+
         }
 
-        //Associar a tabela Usuarios a tabela Consultas. Um Usuário possui muitas Consultas.
+        public string PerfilDescricao
+        {
+            get { return Perfil.ToString(); }
+        }
+
         [JsonIgnore]
         public ICollection<Consulta> Consultas { get; set; }
 
@@ -54,7 +60,7 @@ namespace apirest.Models
         Feminino,
         Masculino
     }
-              
+
     public enum UsuarioPerfil
     {
         [Display(Name = "Administrador")]
